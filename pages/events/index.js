@@ -1,17 +1,11 @@
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Link from 'next/link'
-import Layout from '../components/Layout'
-import EventItem from '../components/EventItem'
+import Layout from "../../components/Layout"
+import EventItem from "../../components/EventItem"
 
-// 클라이언트
-export default function Home({events}) {
-  // events = []
+export default function EventPage({events}) {
   return (
     <Layout>
-      <h1>Home</h1>
+      <h1>이벤트 정보</h1>
       {events.length === 0 && <h3>공연 정보가 없습니다.</h3>}
-
       { 
         events.map(evt => 
           <EventItem evt={evt} key={evt.id} />
@@ -29,7 +23,7 @@ export async function getServerSideProps() {
   console.log(events);
 
   return {
-    props: { events: events.slice(0,3) },
+    props: { events },
     // revalidate: 1
   }
 }
